@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Melocoton pastel */
+.peach {
+    background-color: #FFDAB9;
+}
+/* Crema suave */
+.cream {
+    background-color: #FFF8DC;
+}
+
+/* Verde menta pastel */
+.mint {
+    background-color: #B2E0D8;
+}
+
+/* Gris cálido */
+.warm-gray {
+    background-color: #D3D3D3;
+}
+
+/* Blanco roto */
+.off-white {
+    background-color: #F5F5F0;
+}
+
+/* Naranja pastel suave */
+.soft-orange {
+    background-color: #FFD4A3;
+}
