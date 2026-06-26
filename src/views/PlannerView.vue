@@ -25,6 +25,9 @@
                 </div>
             </div>
             <p class="boder border-b-2 border-orange-950"></p>
+            <div>
+                <p>Ingredientes necesarios</p>
+            </div>
         </div>
         <div v-else>
             <img src="../assets/taz_cookbook.jpeg" alt="empty">

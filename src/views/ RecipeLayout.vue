@@ -1,5 +1,5 @@
 <template>
-  <div class="peach min-h-screen flex items-center justify-center">
+  <div class="peach flex items-center justify-center">
     <div v-if="loading">
       <p class="text-2xl">Loading...</p>
     </div>

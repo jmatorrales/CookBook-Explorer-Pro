@@ -1,6 +1,6 @@
 <template>
-    <div class="peach min-h-screen flex flex-col">
-        <div class="flex flex-wrap gap-4 overflow-x-auto p-4 justify-center">
+    <div class="peach flex flex-col">
+        <div class="flex flex-wrap gap-4 p-4 justify-center">
             <button v-for="letter in alphabet" :key="letter" @click="activeLetter = letter; filterByLetter(letter)"
                 :disabled="activeLetter === letter"
                 :class="activeLetter === letter ? 'bg-green-400' : 'bg-mint hover:bg-warm_gray'"
