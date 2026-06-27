@@ -34,18 +34,22 @@ export default {
     },
     methods: {
         filterByLetter(letter) {
-            this.activeLetter = letter;
-            // Llamar a API con el parámetro de letra
-            this.store.fetchSearchRecipesByLetter(letter);
+            this.activeLetter = letter
+            this.store.activeLetter = letter  // ← Guardar en el store
+            this.store.fetchSearchRecipesByLetter(letter)
         },
         selectedMeal(meal) {
-            //this.$emit('meal-selected', meal);
             this.$router.push(`/recipe/${meal.idMeal}`)
         }
     },
     mounted() {
-        // Cargar recetas por defecto (por ejemplo, la letra 'A')
-        this.filterByLetter('A');
+        // Si hay una letra activa, cargar las recetas del caché
+        if (this.store.activeLetter) {
+            this.activeLetter = this.store.activeLetter
+            this.filterByLetter(this.store.activeLetter)
+        } else {
+            this.filterByLetter('A')
+        }
     }
 }
 </script>

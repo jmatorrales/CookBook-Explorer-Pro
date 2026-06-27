@@ -1,16 +1,16 @@
 <template>
-  <div class="peach flex items-center justify-center">
-    <div v-if="loading">
+  <div class="peach">
+    <div v-if="loading" class="flex items-center justify-center h-full">
       <p class="text-2xl">Loading...</p>
     </div>
-    <div v-else>
+    <div v-else class="p-5">
       <div class="flex items-center gap-1 py-2">
         <button @click="$router.go(-1)">
           <img src="../assets/ArrowLeftBold.svg" alt="Back" class="h-14 w-14" />
         </button>
         <p>Back</p>
       </div>
-      <div v-if="meal" class="flex flex-col gap-7 p-5">
+      <div v-if="meal" class="flex flex-col gap-7">
         <p class="text-2xl font-bold text-black">{{ meal.strMeal }}</p>
         <div class="flex flex-row gap-10">
           <RecipeInfo :meal="meal" />

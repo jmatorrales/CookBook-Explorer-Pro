@@ -1,12 +1,14 @@
 <template>
     <div class="flex flex-col gap-3 p-4">
-        <p class="text-xl underline">Instructions:</p>
-        <!-- <p>{{ meal.strInstructions }}</p> -->
-        <ol class=" list-inside space-y-3">
-            <li v-for="(step, index) in steps" :key="index">
-                {{ step }}
-            </li>
-        </ol>
+        <div v-if="steps.length > 0">
+            <p class="text-xl underline">Instructions:</p>
+            <ol class="list-inside space-y-3">
+                <li v-for="(step, index) in steps" :key="index">
+                    {{ step }}
+                </li>
+            </ol>
+        </div>
+        
         <div v-if="meal.strYoutube" class="flex flex-col justify-center p-4">
             <div class="flex justify-center">
                 <iframe :src="youtubeEmbed" width="560" height="315" class="rounded" frameborder="0"
@@ -23,10 +25,10 @@ export default {
     props: ['meal'],
     computed: {
         steps() {
+            if (!this.meal?.strInstructions) return []
             const regex = /step\s\d+\s[^]*?(?=step\s\d+|$)/gi
-            return this.meal.strInstructions
-                .match(regex)
-                .map(step => step.trim())
+            const matches = this.meal.strInstructions.match(regex)
+            return matches ? matches.map(step => step.trim()) : []
         },
         youtubeThumb() {
             const videoId = this.meal.strYoutube.split('v=')[1]

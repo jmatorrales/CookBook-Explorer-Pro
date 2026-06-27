@@ -15,22 +15,36 @@
             <div v-for="(meal, day) in store.weeklyPlan" :key="day">
                 <div v-if="meal">
                     <p>{{ day }}: {{ meal.strMeal }}</p>
-                </div>                
+                </div>
             </div>
             <p class="boder border-b-2 border-orange-950"></p>
-            <div v-for="(meal,day) in store.weeklyPlan" :key="day">
+            <div v-for="(meal, day) in store.weeklyPlan" :key="day">
                 <div v-if="!meal" class="flex flex-row">
                     <p>{{ day }}: No hay comidas</p>
-                    
+
                 </div>
             </div>
             <p class="boder border-b-2 border-orange-950"></p>
             <div>
                 <p>Ingredientes necesarios</p>
+                <ul>
+                    <li v-for="(ingredient, index) in allIngredients" :key="index">
+                        {{ ingredient }}
+                    </li>
+                </ul>
             </div>
         </div>
-        <div v-else>
-            <img src="../assets/taz_cookbook.jpeg" alt="empty">
+        <div v-else class="h-full">
+            <div class="flex items-center gap-1 py-2">
+                <button @click="$router.go(-1)">
+                    <img src="../assets/ArrowLeftBold.svg" alt="Back" class="h-14 w-14" />
+                </button>
+                <p>Back</p>
+            </div>
+            <div class="flex flex-col justify-center items-center h-full gap-10">
+                <p class="text-4xl text-fuchsia-900">No hay recetas planificadas</p>
+                <img src="../assets/taz_cookbook.png" alt="empty">
+            </div>
         </div>
     </div>
 </template>
@@ -44,6 +58,20 @@ export default {
     computed: {
         hasPlannings() {
             return Object.values(this.store.weeklyPlan).some(meal => meal !== null)
+        },
+        // Funcion para obtener todos los ingredientes de las recetas 
+        allIngredients() {
+            const listIngredients = []
+            for (const [day, meal] of Object.entries(this.store.weeklyPlan)) {
+                if (meal) {
+                    for (let i = 1; i <= 20; i++) {
+                        if (meal[`strIngredient${i}`]) {
+                            listIngredients.push(meal[`strIngredient${i}`])
+                        }
+                    }
+                }
+            }
+            return listIngredients
         }
     },
     mounted() {
