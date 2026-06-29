@@ -5,6 +5,8 @@ import RecipeIngredients from "../views/recipe/RecipeIngredients.vue";
 import RecipeInstructions from "../views/recipe/RecipeInstructions.vue";
 import PlannerView from "../views/PlannerView.vue";
 
+import testToast from "../composables/testToast.vue";
+
 const routes = [
   { path: "/", component: () => import("../views/SearchView.vue") },
   {
@@ -17,6 +19,7 @@ const routes = [
     ],
   },
   { path: "/planner", component: PlannerView },
+  { path: "/toast", component:testToast },
 
   {
     path: "/:pathMatch(.*)*",

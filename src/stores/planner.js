@@ -55,7 +55,7 @@ export const usePlanner = defineStore("planner", {
     },
 
     // Elimina la receta de un día específico (lo deja en null)
-    removeMeal(day) {
+    removeMealFromDay(day) {
       if (this.weeklyPlan.hasOwnProperty(day)) {
         this.weeklyPlan[day] = null;
         console.log(`Removed meal from ${day}`);

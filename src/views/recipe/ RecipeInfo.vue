@@ -10,21 +10,21 @@
                     {{ day }}
                 </option>
             </select>
-            <button class="h-10 w-10 ml-2 hover:opacity-80" @click="store.assignMeal(selectedDay, meal)">
+            <button class="h-10 w-10 ml-2 hover:opacity-80" @click="addWithToast">
                 <img src="../../assets/addSquareSolid.svg" alt="add">
             </button>
         </div>
-
     </div>
 </template>
+
 <script>
-import { usePlanner } from '../../stores/planner'
+import { useToastActions } from '../../composables/useToastAction'
 
 export default {
     props: ['meal'],
     setup() {
-        const store = usePlanner()
-        return { store }
+        const { addMealWithToast } = useToastActions()
+        return { addMealWithToast }
     },
     data() {
         return {
@@ -32,6 +32,13 @@ export default {
             days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
         }
     },
+    methods: {
+        addWithToast() {
+            if (this.selectedDay) {
+                this.addMealWithToast(this.selectedDay, this.meal)
+                this.selectedDay = ''
+            }
+        }
+    }
 }
 </script>
-<style></style>
